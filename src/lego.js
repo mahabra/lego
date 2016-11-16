@@ -72,7 +72,11 @@ export function lego(propsTypes, factory, defaultProps = {}) {
       } else if (!validate(props[prop], propsTypes[prop])) {
         throw new Error('Invalid lego type of property `'+prop+'`');
       } else {
-        got[prop] = props[prop];
+        if ("undefined"===typeof props[prop] && got.hasOwnProperty(prop)) {
+          // Skip
+        } else {
+          got[prop] = props[prop];
+        }
       }
     }
 
@@ -87,6 +91,12 @@ export const PropTypes = {
   number: function(val) { return "number"===typeof val },
   string: function(val) { return "string"===typeof val },
   boolean: function(val) { return "boolean"===typeof val },
+  undefined: function(val) { return "undefined"===typeof val },
+  mayBe: function(t) {
+    return function(val) {
+      return "undefined"===typeof val || validate(val, t)
+    }
+  },
   Date: function(val) { return val instanceof Date },
   instanceOf: function(Constructor) {
     return function(val) {

@@ -99,4 +99,20 @@ describe('Lego must works as expected', () => {
     });
     expect(subFactoryFactory).toThrowError("Lego factory requires props: c");
   });
+
+  it('Preserve default value', () => {
+    var factoryFactory = lego({
+      a: lego.PropTypes.string,
+      b: lego.PropTypes.mayBe(lego.PropTypes.number)
+    }, (a, b) => {
+      expect(b).toEqual(12358);
+    }, {
+      b: 12358
+    });
+
+    factoryFactory({
+      a: "hello",
+      b: undefined
+    })();
+  });
 });
