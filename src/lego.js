@@ -61,7 +61,7 @@ export function lego(propsTypes, factory, defaultProps = {}) {
     const got = Object.assign({}, defaultProps);
     if ("object"!==typeof props) {
       if (Object.keys(got).length===Object.keys(propsTypes).length) {
-        return factory.bind(this, ...objectValues(fill(Object.keys(propsTypes), got)));
+        return factory(...objectValues(fill(Object.keys(propsTypes), got)));
       }
       throw new Error("Lego factory requires props: "+getLostedProps(got, Object.keys(propsTypes)).join(','));
     }

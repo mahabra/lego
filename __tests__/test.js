@@ -8,12 +8,13 @@ describe('Lego must works as expected', () => {
   }, function(a, b, c) {
     return a.hello +  b[0] + c;
   });
-  it('Lego must return a factory', () => {
+  it('Lego must returns a factory', () => {
     expect(typeof factoryFactory).toBe('function');
     let subFactoryFactory = factoryFactory({
       a: {hello: 1}
     });
     expect(typeof subFactoryFactory).toBe('function');
+
     let subSubFactoryFactory = subFactoryFactory({
       b: [1, 2, 3]
     });
@@ -23,11 +24,11 @@ describe('Lego must works as expected', () => {
     });
     expect(typeof subSubSubFactoryFactory).toBe('function');
 
-    let handler = subSubSubFactoryFactory();
-    expect(typeof handler).toBe("function");
-
-    expect(handler()).toBe(17);
+    let result = subSubSubFactoryFactory();
+    expect(typeof result).toBe("number");
+    expect(result).toBe(17);
   });
+
 
   it('Lego must provide errors on wrong types', () => {
     var factoryFactory = lego({
