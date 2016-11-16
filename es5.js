@@ -145,7 +145,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else if (!validate(props[prop], propsTypes[prop])) {
 	        throw new Error('Invalid lego type of property `' + prop + '`');
 	      } else {
-	        got[prop] = props[prop];
+	        if ("undefined" === typeof props[prop] && got.hasOwnProperty(prop)) {
+	          // Skip
+	        } else {
+	          got[prop] = props[prop];
+	        }
 	      }
 	    }
 
@@ -171,6 +175,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  boolean: function boolean(val) {
 	    return "boolean" === typeof val;
+	  },
+	  undefined: function undefined(val) {
+	    return "undefined" === typeof val;
+	  },
+	  mayBe: function mayBe(t) {
+	    return function (val) {
+	      return "undefined" === typeof val || validate(val, t);
+	    };
 	  },
 	  Date: function (_Date) {
 	    function Date(_x3) {
