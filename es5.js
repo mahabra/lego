@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var got = Object.assign({}, defaultProps);
 	    if ("object" !== (typeof props === "undefined" ? "undefined" : _typeof(props))) {
 	      if (Object.keys(got).length === Object.keys(propsTypes).length) {
-	        return factory.bind.apply(factory, [this].concat(_toConsumableArray(objectValues(fill(Object.keys(propsTypes), got)))));
+	        return factory.apply(undefined, _toConsumableArray(objectValues(fill(Object.keys(propsTypes), got))));
 	      }
 	      throw new Error("Lego factory requires props: " + getLostedProps(got, Object.keys(propsTypes)).join(','));
 	    }
