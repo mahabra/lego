@@ -70,7 +70,7 @@ export function lego(propsTypes, factory, defaultProps = {}) {
       if (!propsTypes.hasOwnProperty(prop)) {
         throw new Error('Unexpected property `'+prop+'`')
       } else if (!validate(props[prop], propsTypes[prop])) {
-        throw new Error('Invalid lego type `'+(typeof prop)+'` of property `'+prop+'` with value '+String(props[prop]));
+        throw new Error('Invalid lego type `'+(typeof props[prop])+'` of property `'+prop+'` with value '+String(props[prop]));
       } else {
         if ("undefined"===typeof props[prop] && got.hasOwnProperty(prop)) {
           // Skip
