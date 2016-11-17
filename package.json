@@ -1,6 +1,6 @@
 {
   "name": "lego",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Factory of factory of anything",
   "main": "src/lego.js",
   "scripts": {
